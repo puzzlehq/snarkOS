@@ -4,6 +4,8 @@ RUN ls
 RUN git clone \
   https://github.com/puzzlehq/snarkos.git \
   --depth 1
+RUN git checkout 0af6a5597778d2f5cfb44432812afc81ed6207a2
+RUN cargo install --path .
 WORKDIR snarkos
 RUN ["chmod", "+x", "build_ubuntu.sh"]
 RUN ./build_ubuntu.sh
