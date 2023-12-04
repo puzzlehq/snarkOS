@@ -13,4 +13,5 @@ RUN export VALIDATOR_PRIVATE_KEY=$(awk '/Private Key/ {print $3}' account.txt)
 EXPOSE 5000/tcp
 EXPOSE 3033/tcp
 EXPOSE 4133/tcp
+RUN ["chmod", "+x", "run-validator.sh"]
 ENTRYPOINT [ "./run-validator.sh" ]
