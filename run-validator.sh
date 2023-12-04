@@ -4,16 +4,22 @@
   # CLI with prompts for vars:  ./run-validator.sh
 
 # If the env var VALIDATOR_PRIVATE_KEY is not set, prompt for it
-if [ -z "${VALIDATOR_PRIVATE_KEY}" ]
-then
-  read -r -p "Enter the Aleo Validator account private key: "
-  VALIDATOR_PRIVATE_KEY=$REPLY
-fi
+# if [ -z "${VALIDATOR_PRIVATE_KEY}" ]
+# then
+#   read -r -p "Enter the Aleo Validator account private key: "
+#   VALIDATOR_PRIVATE_KEY=$REPLY
+# fi
 
-if [ "${VALIDATOR_PRIVATE_KEY}" == "" ]
-then
-  echo "Missing account private key. (run 'snarkos account new' and try again)"
-  exit
+# if [ "${VALIDATOR_PRIVATE_KEY}" == "" ]
+# then
+#   echo "Missing account private key. (run 'snarkos account new' and try again)"
+#   exit
+# fi
+
+# Check if VALIDATOR_PRIVATE_KEY is set
+if [ -z "${VALIDATOR_PRIVATE_KEY}" ]; then
+  echo "Missing account private key. Set the VALIDATOR_PRIVATE_KEY environment variable and try again."
+  exit 1
 fi
 
 COMMAND="cargo run --release -- start --nodisplay --validator --private-key ${VALIDATOR_PRIVATE_KEY}"
