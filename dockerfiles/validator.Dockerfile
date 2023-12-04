@@ -8,10 +8,7 @@ RUN git clone -b validator https://github.com/puzzlehq/snarkos.git --depth 1
 WORKDIR snarkos
 RUN ["chmod", "+x", "build_ubuntu.sh"]
 RUN ./build_ubuntu.sh
-RUN snarkos account new > account.txt
-RUN export VALIDATOR_PRIVATE_KEY=$(awk '/Private Key/ {print $3}' account.txt)
 EXPOSE 5000/tcp
 EXPOSE 3033/tcp
 EXPOSE 4133/tcp
-RUN ["chmod", "+x", "run-validator.sh"]
-ENTRYPOINT [ "./run-validator.sh" ]
+CMD ["sh", "-c", "snarkos start --nodisplay --validator --private-key ${VALIDATOR_PRIVATE_KEY}"]
