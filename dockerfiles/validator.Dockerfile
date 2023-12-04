@@ -13,4 +13,4 @@ RUN VALIDATOR_PRIVATE_KEY=$(awk '/Private Key/ {print $3}' account.txt) && echo 
 EXPOSE 5000/tcp
 EXPOSE 3033/tcp
 EXPOSE 4133/tcp
-CMD ["sh", "-c", "cargo run --release -- start --nodisplay --validator --private-key $(cat private_key.txt)"]
+CMD ["sh", "-c", "snarkos start --nodisplay --validator --private-key $VALIDATOR_PRIVATE_KEY"]
