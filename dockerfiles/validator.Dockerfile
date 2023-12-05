@@ -36,7 +36,7 @@ RUN git clone -b validator https://github.com/puzzlehq/snarkOS.git --depth 1 .
 RUN cargo build --release
 
 # Expose ports (note that these are only for documentation; actual port mapping is done at runtime)
-EXPOSE 3033 4133
+# EXPOSE 3033 4133
 
 # Set the start command; Railway should pass in the VALIDATOR_PRIVATE_KEY via environment variable
 CMD ["sh", "-c", "echo The current value of VALIDATOR_PRIVATE_KEY is: $VALIDATOR_PRIVATE_KEY && cargo run --release -- start --nodisplay --validator --private-key $VALIDATOR_PRIVATE_KEY"]
