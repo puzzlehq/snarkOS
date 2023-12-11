@@ -1,13 +1,3 @@
-# FROM rust:1.70-slim-buster
-# RUN apt-get update -y && apt-get install git -y
-# RUN git clone -b validator https://github.com/puzzlehq/snarkos.git --depth 1
-# WORKDIR snarkos
-# RUN ["chmod", "+x", "build_ubuntu.sh"]
-# RUN ./build_ubuntu.sh
-# EXPOSE 5000/tcp
-# EXPOSE 3033/tcp
-# EXPOSE 4133/tcp
-# CMD ["sh", "-c", "snarkos start --nodisplay --validator --private-key ${VALIDATOR_PRIVATE_KEY}"]
 # Use the official Rust image as a base
 FROM rust:1.74-slim-buster
 
@@ -29,16 +19,16 @@ RUN apt-get update && apt-get install -y \
   git \
   && rm -rf /var/lib/apt/lists/*
 
-# Clone the specific branch of snarkOS from the repository
+# Clone the specific branch of snarkOS from your fork
 RUN git clone -b validator https://github.com/puzzlehq/snarkOS.git --depth 1 .
 
-# Build snarkOS
-RUN cargo build --release
+RUN git remote add aleo https://github.com/AleoHQ/snarkOS.git
 
-# Expose ports (note that these are only for documentation; actual port mapping is done at runtime)
-# EXPOSE 3033 4133
+RUN git fetch aleo 0af6a5597778d2f5cfb44432812afc81ed6207a2
+
+RUN git checkout 0af6a5597778d2f5cfb44432812afc81ed6207a2
+
+RUN cargo build --release
 
 # Set the start command; Railway should pass in the VALIDATOR_PRIVATE_KEY via environment variable
 CMD ["sh", "-c", "echo The current value of VALIDATOR_PRIVATE_KEY is: $VALIDATOR_PRIVATE_KEY && cargo run --release -- start --nodisplay --validator --private-key $VALIDATOR_PRIVATE_KEY"]
-
-# CMD ["sh", "-c", "cargo run --release -- start --nodisplay --validator --private-key ${VALIDATOR_PRIVATE_KEY}"]
