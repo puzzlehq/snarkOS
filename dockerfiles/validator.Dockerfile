@@ -2,7 +2,7 @@
 FROM rust:1.74-slim-buster
 
 # Set the working directory
-WORKDIR /usr/src/snarkOS
+WORKDIR /usr/src/snarkOS_$(git rev-parse HEAD)
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
