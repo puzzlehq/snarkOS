@@ -17,6 +17,8 @@ RUN apt-get update && apt-get install -y \
     tmux \
     xz-utils \
     git \
+    wget \
+    tar \
     && rm -rf /var/lib/apt/lists/*
 
 # Clone the specific branch of snarkOS from your fork
