@@ -1,19 +1,10 @@
-# FROM rust:1.70-slim-buster
-# RUN apt-get update -y && apt-get install git -y
-# RUN git clone -b validator https://github.com/puzzlehq/snarkos.git --depth 1
-# WORKDIR snarkos
-# RUN ["chmod", "+x", "build_ubuntu.sh"]
-# RUN ./build_ubuntu.sh
-# EXPOSE 5000/tcp
-# EXPOSE 3033/tcp
-# EXPOSE 4133/tcp
-# CMD ["sh", "-c", "snarkos start --nodisplay --validator --private-key ${VALIDATOR_PRIVATE_KEY}"]
 # Use the official Rust image as a base
 FROM rust:1.74-slim-buster
 
 # Set the working directory
-WORKDIR /usr/src/snarkOS
+WORKDIR /usr/src/snarkOS_$(git rev-parse HEAD)
 
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     clang \
@@ -28,14 +19,26 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
+# Clone the specific branch of snarkOS from your fork
 RUN git clone -b validator https://github.com/puzzlehq/snarkOS.git --depth 1 .
+
+RUN git remote add aleo https://github.com/AleoHQ/snarkOS.git
+
+RUN git fetch aleo 0af6a5597778d2f5cfb44432812afc81ed6207a2
+
+RUN git checkout 0af6a5597778d2f5cfb44432812afc81ed6207a2
 
 RUN cargo build --release
 
-EXPOSE 4133/tcp
-EXPOSE 3033/tcp
-EXPOSE 5000/tcp
+# Fetch the storage snapshot
+RUN wget https://ledger.aleo.network/aleoledger-231201.tgz
+# Uncompress the storage folder
+RUN tar -xvzf aleoledger-231201.tgz
 
-CMD ["sh", "-c", "echo The current value of VALIDATOR_PRIVATE_KEY is: $VALIDATOR_PRIVATE_KEY && cargo run --release -- start --nodisplay --validator --private-key $VALIDATOR_PRIVATE_KEY"]
+# Remove the old storage folder
+RUN rm -rf ~/.aleo/storage/ledger-3
+# Load in the new storage folder
+RUN cp ledger-3/ ~/.aleo/storage/ledger-3 -R
 
-# CMD ["sh", "-c", "cargo run --release -- start --nodisplay --validator --private-key ${VALIDATOR_PRIVATE_KEY}"]
+# Set the start command; Railway should pass in the VALIDATOR_PRIVATE_KEY via environment variable
+CMD ["sh", "-c", "echo The current value of VALIDATOR_PRIVATE_KEY is: $VALIDATOR_PRIVATE_KEY && cargo run --release -- start --nodisplay --client --private-key $VALIDATOR_PRIVATE_KEY"]
