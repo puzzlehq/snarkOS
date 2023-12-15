@@ -38,15 +38,12 @@ RUN git checkout joske/fix/block_sync
 
 RUN cargo build --release
 
-# Fetch the storage snapshot
-RUN wget https://ledger.aleo.network/aleoledger-231201.tgz
-# Uncompress the storage folder
-RUN tar -xvzf aleoledger-231201.tgz
+RUN wget https://ledger.aleo.network/aleoledger-840269.tar.gz
 
-# Remove the old storage folder
+RUN tar -xvzf aleoledger-840269.tar.gz
+
 RUN rm -rf ~/.aleo/storage/ledger-3
-# Load in the new storage folder
-# RUN cp ledger-3/ ~/.aleo/storage/ledger-3 -R
 
-# Set the start command; Railway should pass in the VALIDATOR_PRIVATE_KEY via environment variable
-CMD ["sh", "-c", "echo The current value of VALIDATOR_PRIVATE_KEY is: $VALIDATOR_PRIVATE_KEY && cargo run --release -- start --nodisplay --client --private-key $VALIDATOR_PRIVATE_KEY --verbosity 4"]
+RUN cp -R storage/ledger-3/ ~/.aleo/storage/ledger-3
+
+CMD ["sh", "-c", "cargo run --release -- start --nodisplay --client --verbosity 4"]
