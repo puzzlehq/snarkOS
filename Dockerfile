@@ -26,9 +26,13 @@ RUN git clone -b validator https://github.com/puzzlehq/snarkOS.git --depth 1 .
 
 RUN git remote add aleo https://github.com/AleoHQ/snarkOS.git
 
-RUN git fetch aleo 0af6a5597778d2f5cfb44432812afc81ed6207a2
+RUN git remote add joske git@github.com:joske/snarkOS.git
 
-RUN git checkout 0af6a5597778d2f5cfb44432812afc81ed6207a2
+RUN git checkout fix/block_sync
+
+# RUN git fetch aleo 0af6a5597778d2f5cfb44432812afc81ed6207a2
+
+# RUN git checkout 0af6a5597778d2f5cfb44432812afc81ed6207a2
 
 RUN cargo build --release
 
@@ -43,4 +47,4 @@ RUN rm -rf ~/.aleo/storage/ledger-3
 # RUN cp ledger-3/ ~/.aleo/storage/ledger-3 -R
 
 # Set the start command; Railway should pass in the VALIDATOR_PRIVATE_KEY via environment variable
-CMD ["sh", "-c", "echo The current value of VALIDATOR_PRIVATE_KEY is: $VALIDATOR_PRIVATE_KEY && cargo run --release -- start --nodisplay --client --private-key $VALIDATOR_PRIVATE_KEY"]
+CMD ["sh", "-c", "echo The current value of VALIDATOR_PRIVATE_KEY is: $VALIDATOR_PRIVATE_KEY && cargo run --release -- start --nodisplay --client --private-key $VALIDATOR_PRIVATE_KEY --verbosity 4"]
