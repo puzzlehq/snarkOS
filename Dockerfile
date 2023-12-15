@@ -21,7 +21,6 @@ RUN apt-get update && apt-get install -y \
     tar \
     && rm -rf /var/lib/apt/lists/*
 
-# Clone the specific branch of snarkOS from your fork
 RUN git clone -b validator https://github.com/puzzlehq/snarkOS.git --depth 1 .
 
 RUN git remote add aleo https://github.com/AleoHQ/snarkOS.git
@@ -44,6 +43,6 @@ RUN tar -xvzf aleoledger-840269.tar.gz
 
 RUN rm -rf ~/.aleo/storage/ledger-3
 
-RUN cp -R storage/ledger-3/ ~/.aleo/storage/ledger-3
+RUN mkdir -p ~/.aleo/storage && cp -R storage/ledger-3/ ~/.aleo/storage/ledger-3
 
 CMD ["sh", "-c", "cargo run --release -- start --nodisplay --client --verbosity 4"]
