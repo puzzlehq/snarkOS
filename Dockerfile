@@ -26,7 +26,7 @@ RUN git clone -b validator https://github.com/puzzlehq/snarkOS.git --depth 1 .
 
 RUN git remote add aleo https://github.com/AleoHQ/snarkOS.git
 
-RUN git remote add joske git@github.com:joske/snarkOS.git
+RUN git remote add joske https://github.com/joske/snarkOS.git
 
 RUN git fetch joske fix/block_sync
 
