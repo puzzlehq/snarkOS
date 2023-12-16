@@ -39,7 +39,7 @@ RUN cargo build --release
 
 RUN wget https://aleo-snapshots.f5nodes.com/storage_975197.tar.gz
 
-RUN tar -xvzf storage_975197.tar.gz
+RUN tar -xvzf storage_975197.tar.gz && ls -lah
 
 RUN rm -rf /home/ubuntu/.aleo/storage/ledger-3
 
