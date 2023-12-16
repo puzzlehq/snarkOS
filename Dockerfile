@@ -43,7 +43,9 @@ RUN tar -xvzf storage_975197.tar.gz && ls -lah
 
 RUN rm -rf /home/ubuntu/.aleo/storage/ledger-3
 
-RUN mkdir -p /home/ubuntu/.aleo/storage && cp -R /home/ubuntu/aleo-snapshots/storage/ledger-3 /home/ubuntu/.aleo/storage/ledger-3
+RUN mkdir -p /extracted && tar -xvzf storage_975197.tar.gz -C /extracted && ls -lah /extracted/home/ubuntu/aleo-snapshots/storage/ledger-3
+
+RUN mkdir -p /home/ubuntu/.aleo/storage && cp -R /extracted/home/ubuntu/aleo-snapshots/storage/ledger-3 /home/ubuntu/.aleo/storage/ledger-3
 
 
 CMD ["sh", "-c", "cargo run --release -- start --nodisplay --client --verbosity 4"]
