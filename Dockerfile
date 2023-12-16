@@ -37,9 +37,9 @@ RUN git checkout joske/fix/block_sync
 
 RUN cargo build --release
 
-RUN wget https://aleo-snapshots.f5nodes.com/storage_975197.tar.gz
+RUN wget https://ledger.aleo.network/aleoledger-840269.tar.gz
 
-RUN tar -xvzf storage_975197.tar.gz
+RUN tar -xvzf aleoledger-840269.tar.gz
 
 RUN rm -rf ~/.aleo/storage/ledger-3
 
