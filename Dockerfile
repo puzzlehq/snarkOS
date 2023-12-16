@@ -37,15 +37,13 @@ RUN git checkout joske/fix/block_sync
 
 RUN cargo build --release
 
-RUN wget https://aleo-snapshots.f5nodes.com/storage_975197.tar.gz
+RUN wget wget https://aleo-snapshots.f5nodes.com/storage_990607.tar.gz
 
-RUN tar -xvzf storage_975197.tar.gz && ls -lah
+RUN rm -rf ~/.aleo/storage/ledger-3
 
-RUN rm -rf /home/ubuntu/.aleo/storage/ledger-3
+RUN mkdir -p /extracted && tar -xvzf storage_990607.tar.gz -C /extracted && ls -lah /extracted/home/ubuntu/aleo-snapshots/storage/ledger-3
 
-RUN mkdir -p /extracted && tar -xvzf storage_975197.tar.gz -C /extracted && ls -lah /extracted/home/ubuntu/aleo-snapshots/storage/ledger-3
-
-RUN mkdir -p /home/ubuntu/.aleo/storage && cp -R /extracted/home/ubuntu/aleo-snapshots/storage/ledger-3 /home/ubuntu/.aleo/storage/ledger-3
+RUN mkdir -p ~/.aleo/storage && cp -R /extracted/home/ubuntu/aleo-snapshots/storage/ledger-3 ~/.aleo/storage/ledger-3
 
 
 CMD ["sh", "-c", "cargo run --release -- start --nodisplay --client --verbosity 4"]
