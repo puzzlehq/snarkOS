@@ -24,7 +24,7 @@ use snarkvm::prelude::{block::Block, Network};
 use anyhow::{bail, ensure, Result};
 use indexmap::{IndexMap, IndexSet};
 use itertools::Itertools;
-use parking_lot::RwLock;
+use parking_lot::{Mutex, RwLock};
 use rand::{prelude::IteratorRandom, CryptoRng, Rng};
 use std::{
     collections::BTreeMap,
@@ -58,7 +58,7 @@ pub enum BlockSyncMode {
 }
 
 impl BlockSyncMode {
-    /// Returns `true` if the node is in router moder.
+    /// Returns `true` if the node is in router mode.
     pub const fn is_router(&self) -> bool {
         matches!(self, Self::Router)
     }
@@ -75,7 +75,7 @@ impl BlockSyncMode {
 /// - When a request is inserted, the `requests` map and `request_timestamps` map insert an entry for the request height.
 /// - When a response is inserted, the `requests` map inserts the entry for the request height.
 /// - When a request is completed, the `requests` map still has the entry, but its `sync_ips` is empty;
-/// - the `request_timestamps` map remains unchanged.
+///   the `request_timestamps` map remains unchanged.
 /// - When a response is removed/completed, the `requests` map and `request_timestamps` map also remove the entry for the request height.
 /// - When a request is timed out, the `requests`, `request_timestamps`, and `responses` map remove the entry for the request height;
 #[derive(Clone, Debug)]
@@ -106,6 +106,8 @@ pub struct BlockSync<N: Network> {
     request_timeouts: Arc<RwLock<IndexMap<SocketAddr, Vec<Instant>>>>,
     /// The boolean indicator of whether the node is synced up to the latest block (within the given tolerance).
     is_block_synced: Arc<AtomicBool>,
+    /// The lock to guarantee advance_with_sync_blocks() is called only once at a time.
+    advance_with_sync_blocks_lock: Arc<Mutex<()>>,
 }
 
 impl<N: Network> BlockSync<N> {
@@ -121,6 +123,7 @@ impl<N: Network> BlockSync<N> {
             request_timestamps: Default::default(),
             request_timeouts: Default::default(),
             is_block_synced: Default::default(),
+            advance_with_sync_blocks_lock: Default::default(),
         }
     }
 
@@ -270,6 +273,13 @@ impl<N: Network> BlockSync<N> {
         // Process the block response from the given peer IP.
         self.process_block_response(peer_ip, blocks)?;
 
+        // Acquire the lock to ensure this function is called only once at a time.
+        // If the lock is already acquired, return early.
+        let Some(_lock) = self.advance_with_sync_blocks_lock.try_lock() else {
+            trace!("Skipping a call to advance_with_sync_blocks() as it is already in progress");
+            return Ok(());
+        };
+
         // Retrieve the latest block height.
         let mut current_height = self.canon.latest_block_height();
         // Try to advance the ledger with the sync pool.
@@ -289,8 +299,8 @@ impl<N: Network> BlockSync<N> {
                 warn!("{error}");
                 break;
             }
-            // Increment the latest height.
-            current_height += 1;
+            // Update the latest height.
+            current_height = self.canon.latest_block_height();
         }
         Ok(())
     }
