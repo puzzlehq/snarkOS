@@ -4,7 +4,7 @@ set -e
 DATA_DIR="/root/.aleo/storage/ledger-3"
 
 echo "Removing any existing ledger data..."
-rm -rf $DATA_DIR
+rm -rf $DATA_DIR/*
 
 echo "Downloading the blockchain data snapshot..."
 wget -O /tmp/aleoledger.tar.gz https://ledger.aleo.network/aleoledger-1002442.tar.gz
