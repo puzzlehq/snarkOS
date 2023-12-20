@@ -28,6 +28,8 @@ RUN git clone -b validator https://github.com/puzzlehq/snarkOS.git --depth 1 .
 # RUN git fetch aleo 0af6a5597778d2f5cfb44432812afc81ed6207a2
 # RUN git checkout 0af6a5597778d2f5cfb44432812afc81ed6207a2
 
+RUN ls ~/
+
 RUN cargo build --release
 
 COPY startup.sh /startup.sh
