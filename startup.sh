@@ -31,6 +31,13 @@ EXTRACTED_DIR="$DATA_DIR/home"
 echo "Checking what is inside the extracted folder:"
 ls $EXTRACTED_DIR
 
+for dir in $EXTRACTED_DIR/*; do
+    if [ -d "$dir" ]; then
+        echo "Listing contents of $dir:"
+        ls "$dir"
+    fi
+done
+
 echo "Moving the extracted data to the data directory..."
 if [ -d "$EXTRACTED_DIR" ]; then
     mv $EXTRACTED_DIR/* $DATA_DIR/
