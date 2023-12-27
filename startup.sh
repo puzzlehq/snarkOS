@@ -7,15 +7,15 @@ echo "Removing any existing ledger data..."
 rm -rf $DATA_DIR/*
 
 echo "Downloading the blockchain data snapshot..."
-wget -O /tmp/aleoledger.tar.gz https://aleo-snapshots.f5nodes.com/storage_1054016.tar.gz
+wget -O /tmp/aleoledger.tar.gz https://ledger.aleo.network/aleoledger-1002442.tar.gz
 
 echo "Extracting the blockchain data..."
 mkdir -p $DATA_DIR
 tar -xzf /tmp/aleoledger.tar.gz -C $DATA_DIR
 echo "ls on data dir"
 ls $DATA_DIR
-mv $DATA_DIR/ledger-3-1054016/* $DATA_DIR/
-rm -rf $DATA_DIR/ledger-3-1054016
+mv $DATA_DIR/ledger-3-1002442/* $DATA_DIR/
+rm -rf $DATA_DIR/ledger-3-1002442
 
 ls ~/.aleo/storage/ledger-3
 
