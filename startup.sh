@@ -23,7 +23,7 @@ echo "Debug: Creating $DATA_DIR if it doesn't exist..."
 mkdir -p $DATA_DIR
 
 echo "Debug: Extracting the blockchain data directly to $DATA_DIR..."
-tar -xzf /tmp/aleoledger.tar.gz --strip-components=4 -C $DATA_DIR || { echo "Debug: Extraction failed"; exit 1; }
+tar -xzf /tmp/aleoledger.tar.gz --strip-components=5 -C $DATA_DIR || { echo "Debug: Extraction failed"; exit 1; }
 
 echo "Debug: Listing the final contents of $DATA_DIR:"
 ls $DATA_DIR || { echo "Debug: Failed to list final contents"; exit 1; }
