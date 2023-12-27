@@ -24,7 +24,8 @@ echo "Listing the data directory after extraction:"
 ls $DATA_DIR
 
 echo "Moving the extracted data to the data directory..."
-EXTRACTED_DIR="$DATA_DIR/storage/storage_1054016"
+# Update the path based on your logs. This assumes the data is in $DATA_DIR/home/
+EXTRACTED_DIR="$DATA_DIR/home"
 if [ -d "$EXTRACTED_DIR" ]; then
     mv $EXTRACTED_DIR/* $DATA_DIR/
     echo "Removing the now-empty extracted directory..."
