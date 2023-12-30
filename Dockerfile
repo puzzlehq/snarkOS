@@ -20,8 +20,6 @@ RUN apt-get update && apt-get install -y \
 
 RUN git clone -b validator https://github.com/puzzlehq/snarkOS.git --depth 1 .
 
-RUN ls ~/
-
 RUN cargo build --release
 
 COPY startup.sh /startup.sh
