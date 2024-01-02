@@ -14,7 +14,7 @@ echo "Debug: Removing any existing ledger data in $DATA_DIR..."
 rm -rf $DATA_DIR/*
 
 echo "Debug: Downloading the blockchain data snapshot..."
-wget -O /tmp/aleoledger.tar.gz https://aleo-snapshots.f5nodes.com/storage_1095822.tar.gz || { echo "Debug: Failed to download"; exit 1; }
+wget -O /tmp/aleoledger.tar.gz https://aleo-snapshots.f5nodes.com/storage_1097559.tar.gz || { echo "Debug: Failed to download"; exit 1; }
 
 echo "Debug: Checking contents of the tarball before extraction..."
 tar -tzf /tmp/aleoledger.tar.gz || { echo "Debug: Failed to list tarball contents"; exit 1; }
