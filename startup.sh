@@ -27,7 +27,7 @@ mkdir -p $DATA_DIR
 echo "Debug: Extracting the blockchain data directly to $DATA_DIR..."
 # tar -xzf /tmp/aleoledger.tar.gz --strip-components=5 -C $DATA_DIR || { echo "Debug: Extraction failed"; exit 1; }
 tar -xzf /tmp/aleoledger.tar.gz -C $DATA_DIR
-mv $DATA_DIR/ledger-3-1002442/* $DATA_DIR/
+mv $DATA_DIR/ledger-3-1141222/* $DATA_DIR/
 rm -rf $DATA_DIR/ledger-3-1141222
 
 echo "Debug: Listing the final contents of $DATA_DIR:"
