@@ -27,7 +27,7 @@ echo "Debug: Extracting the blockchain data directly to $DATA_DIR..."
 tar -xzf /tmp/aleoledger.tar.gz -C $DATA_DIR
 
 echo "Moving the extracted data to the data directory..."
-EXTRACTED_DIR="$DATA_DIR/storage/ledger-3-1141222"
+EXTRACTED_DIR="$DATA_DIR/storage/ledger-3-1163525"
 if [ -d "$EXTRACTED_DIR" ]; then
     mv $EXTRACTED_DIR/* $DATA_DIR/
     echo "Removing the now-empty extracted directory..."
