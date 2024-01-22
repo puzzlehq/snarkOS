@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-DATA_DIR="/root/.aleo/storage/ledger-3"
+DATA_DIR="$HOME/.aleo/storage/ledger-3"
 
 cleanup() {
     echo "Debug: Cleaning up temporary files..."
