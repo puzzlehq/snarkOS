@@ -5,7 +5,7 @@ DATA_DIR="/root/.aleo/storage/ledger-3"
 
 cleanup() {
     echo "Debug: Cleaning up temporary files..."
-    rm -rf /tmp/aleoledger.tar.gz
+    rm -rf $DATA_DIR/aleoledger.tar.gz
 }
 
 trap cleanup EXIT
@@ -14,17 +14,17 @@ echo "Debug: Removing any existing ledger data in $DATA_DIR..."
 rm -rf $DATA_DIR/*
 
 echo "Debug: Downloading the blockchain data snapshot..."
-wget -O /tmp/aleoledger.tar.gz https://ledger.aleo.network/snapshot/aleoledger-1163525.tar.gz
+wget -O $DATA_DIR/aleoledger.tar.gz https://ledger.aleo.network/snapshot/aleoledger-1163525.tar.gz
 
 # debugging purposes...
 # echo "Debug: Checking contents of the tarball before extraction..."
-# tar -tzf /tmp/aleoledger.tar.gz || { echo "Debug: Failed to list tarball contents"; exit 1; }
+# tar -tzf $DATA_DIR/aleoledger.tar.gz || { echo "Debug: Failed to list tarball contents"; exit 1; }
 
 echo "Debug: Creating $DATA_DIR if it doesn't exist..."
 mkdir -p $DATA_DIR
 
 echo "Debug: Extracting the blockchain data directly to $DATA_DIR..."
-tar -xzf /tmp/aleoledger.tar.gz -C $DATA_DIR
+tar -xzf $DATA_DIR/aleoledger.tar.gz -C $DATA_DIR
 
 echo "Moving the extracted data to the data directory..."
 EXTRACTED_DIR="$DATA_DIR/storage/ledger-3-1163525"
