@@ -48,7 +48,6 @@ PEERS="159.65.172.226:4133","24.199.105.251:4133","165.232.142.174:4133","159.65
 
 exec cargo run --release -- start --metrics --nodisplay --client --peers "$PEERS" || { echo "Debug: Failed to start snarkOS node"; exit 1; }
 
-
 # running from f5 node snapshot
 
 # set -e
