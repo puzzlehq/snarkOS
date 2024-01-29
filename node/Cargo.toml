@@ -29,11 +29,11 @@ metrics = [
 ]
 
 [dependencies.aleo-std]
-version = "0.1.18"
+version = "0.1.24"
 default-features = false
 
 [dependencies.anyhow]
-version = "1.0.77"
+version = "1.0.79"
 
 [dependencies.async-trait]
 version = "0.1"
