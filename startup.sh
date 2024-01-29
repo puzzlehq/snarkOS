@@ -3,50 +3,50 @@ set -e
 
 DATA_DIR="/root/.aleo/storage/ledger-3"
 
-cleanup() {
-    echo "Debug: Cleaning up temporary files..."
-    rm -rf /tmp/aleoledger.tar.gz
-}
+# cleanup() {
+#     echo "Debug: Cleaning up temporary files..."
+#     rm -rf /tmp/aleoledger.tar.gz
+# }
 
-trap cleanup EXIT
+# trap cleanup EXIT
 
-echo "Debug: Removing any existing ledger data in $DATA_DIR..."
-rm -rf $DATA_DIR/*
+# echo "Debug: Removing any existing ledger data in $DATA_DIR..."
+# rm -rf $DATA_DIR/*
 
-echo "Debug: Downloading the blockchain data snapshot..."
-wget -O /tmp/aleoledger.tar.gz https://ledger.aleo.network/aleoledger-1246918.tar.gz
+# echo "Debug: Downloading the blockchain data snapshot..."
+# wget -O /tmp/aleoledger.tar.gz https://ledger.aleo.network/aleoledger-1246918.tar.gz
 
 # debugging purposes...
 # echo "Debug: Checking contents of the tarball before extraction..."
 # tar -tzf /tmp/aleoledger.tar.gz || { echo "Debug: Failed to list tarball contents"; exit 1; }
 
-echo "Debug: Creating $DATA_DIR if it doesn't exist..."
-mkdir -p $DATA_DIR
+# echo "Debug: Creating $DATA_DIR if it doesn't exist..."
+# mkdir -p $DATA_DIR
 
-echo "Debug: Extracting the blockchain data directly to $DATA_DIR..."
-tar -xzf /tmp/aleoledger.tar.gz -C $DATA_DIR
+# echo "Debug: Extracting the blockchain data directly to $DATA_DIR..."
+# tar -xzf /tmp/aleoledger.tar.gz -C $DATA_DIR
 
-echo "Moving the extracted data to the data directory..."
-EXTRACTED_DIR="$DATA_DIR/storage/ledger-3-1246918"
-if [ -d "$EXTRACTED_DIR" ]; then
-    mv $EXTRACTED_DIR/* $DATA_DIR/
-    echo "Removing the now-empty extracted directory..."
-    rm -rf $EXTRACTED_DIR
-else
-    echo "Expected ledger directory not found in the extracted data."
-    exit 1
-fi
+# echo "Moving the extracted data to the data directory..."
+# EXTRACTED_DIR="$DATA_DIR/storage/ledger-3-1246918"
+# if [ -d "$EXTRACTED_DIR" ]; then
+#     mv $EXTRACTED_DIR/* $DATA_DIR/
+#     echo "Removing the now-empty extracted directory..."
+#     rm -rf $EXTRACTED_DIR
+# else
+#     echo "Expected ledger directory not found in the extracted data."
+#     exit 1
+# fi
 
-echo "Debug: Listing the final contents of $DATA_DIR:"
-ls $DATA_DIR || { echo "Debug: Failed to list final contents"; exit 1; }
+# echo "Debug: Listing the final contents of $DATA_DIR:"
+# ls $DATA_DIR || { echo "Debug: Failed to list final contents"; exit 1; }
 
-echo "Debug: Starting snarkOS node..."
+# echo "Debug: Starting snarkOS node..."
 
 # old peers
 # PEERS="211.171.42.238:4133","121.140.185.177:38259","36.189.234.237:60027","211.171.42.231:4133","128.199.66.135:4133","211.171.42.235:4133","159.135.194.92:4133","211.171.42.234:39891","211.171.42.233:4133","61.10.9.27:4133","47.242.151.228:4143","47.242.151.228:4133","180.151.225.92:64942","104.61.63.153:4133","121.140.185.177:40477","211.171.42.241:4133","118.36.228.252:4133","211.171.42.161:4133","36.189.234.195:4133","211.171.42.234:44875","121.140.185.177:4133","211.171.42.239:4133","45.14.135.4:4133","161.35.144.189:4133","47.243.96.237:4133","94.131.9.32:37007","211.171.42.240:4133","149.102.130.180:4133","211.171.42.164:4133","210.106.251.152:42837","211.171.42.163:4133","211.171.42.236:4133"
-PEERS="159.65.172.226:4133","24.199.105.251:4133","165.232.142.174:4133","159.65.170.82:4133","143.198.79.95:4133","159.223.197.45:4133","137.184.95.204:4133","147.182.250.63:4133","164.92.112.71:4133"
+PEERS="210.106.251.150:4133","121.140.185.177:4133","45.14.135.4:4133","161.35.144.189:4133","210.106.251.156:4133","180.151.225.92:64942","211.171.42.241:4133","211.171.42.236:4133","36.157.199.50:44297","210.106.251.157:4133","210.106.251.154:4133","211.171.42.238:4133","118.36.228.252:4133","210.106.251.158:4133","211.171.42.231:4133","210.106.251.152:4133","210.106.251.161:4133","211.171.42.163:4133","47.243.96.237:4133","210.106.251.159:4133","211.171.42.235:4133","211.171.42.237:4133","211.171.42.239:4133","121.140.185.177:40477","210.106.251.151:4133","210.106.251.155:4133"
 
-exec cargo run --release -- start --metrics --nodisplay --client --peers "$PEERS" || { echo "Debug: Failed to start snarkOS node"; exit 1; }
+exec cargo run --release -- start --nodisplay --client --peers "$PEERS" || { echo "Debug: Failed to start snarkOS node"; exit 1; }
 
 # running from f5 node snapshot
 # set -e
