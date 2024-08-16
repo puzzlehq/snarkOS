@@ -118,6 +118,15 @@ impl Deploy {
         let deployment = package.deploy::<A>(None)?;
         let deployment_id = deployment.to_deployment_id()?;
 
+        match deployment.num_combined_variables() {
+          Ok(num_variables) => {
+              println!("Number of variables: {}", num_variables);
+          }
+          Err(e) => {
+              println!("Failed to get number of variables: {}", e);
+          }
+        }
+
         // Generate the deployment transaction.
         let transaction = {
             // Initialize an RNG.
