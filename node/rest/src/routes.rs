@@ -24,7 +24,7 @@ use indexmap::IndexMap;
 use rayon::prelude::*;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
-
+use std::collections::HashMap;
 /// The `get_blocks` query object.
 #[derive(Deserialize, Serialize)]
 pub(crate) struct BlockRange {
@@ -262,6 +262,33 @@ impl<N: Network, C: ConsensusStorage<N>, R: Routing<N>> Rest<N, C, R> {
         Path(commitment): Path<Field<N>>,
     ) -> Result<ErasedJson, RestError> {
         Ok(ErasedJson::pretty(rest.ledger.get_state_path_for_commitment(&commitment)?))
+    }
+
+    pub(crate) async fn get_state_proofs_for_block(
+        State(rest): State<Self>,
+        Path(block_height): Path<u32>,
+        Query(params): Query<HashMap<String, Vec<String>>>, // Assuming axum query parsing
+    ) -> Result<ErasedJson, RestError> {
+        // Extract commitments from query
+        let commitments: Vec<Field<N>> = params
+            .get("commitments[]")
+            .ok_or_else(|| RestError("No commitments provided".to_string()))?
+            .iter()
+            .map(|commitment| commitment.parse::<Field<N>>())
+            .collect::<Result<Vec<_>, _>>()
+            .map_err(|_| RestError("Invalid commitment provided".to_string()))?;
+
+        // Run blocking fetch on the ledger
+        let result =
+            tokio::task::spawn_blocking(move || rest.ledger.get_state_proofs_for_block(block_height, &commitments))
+                .await
+                .map_err(|err| RestError(format!("Failed to spawn blocking task - {err}")))?;
+
+        // Handle result and return JSON
+        match result {
+            Ok(proofs) => Ok(ErasedJson::pretty(proofs)),
+            Err(err) => Err(RestError(format!("Unable to get state proofs - {err}"))),
+        }
     }
 
     // GET /<network>/stateRoot/latest
