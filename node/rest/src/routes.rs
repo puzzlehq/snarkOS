@@ -267,29 +267,28 @@ impl<N: Network, C: ConsensusStorage<N>, R: Routing<N>> Rest<N, C, R> {
     pub(crate) async fn get_state_proofs_for_block(
         State(rest): State<Self>,
         Path(block_height): Path<u32>,
-        Query(params): Query<HashMap<String, Vec<String>>>, // Assuming axum query parsing
+        Query(params): Query<HashMap<String, Vec<String>>>,
     ) -> Result<ErasedJson, RestError> {
-        // Extract commitments from query
         let commitments: Vec<Field<N>> = params
-            .get("commitments[]")
+            .get("commitments")
             .ok_or_else(|| RestError("No commitments provided".to_string()))?
             .iter()
             .map(|commitment| commitment.parse::<Field<N>>())
             .collect::<Result<Vec<_>, _>>()
             .map_err(|_| RestError("Invalid commitment provided".to_string()))?;
 
-        // Run blocking fetch on the ledger
-        let result =
-            tokio::task::spawn_blocking(move || rest.ledger.get_state_proofs_for_block(block_height, &commitments))
-                .await
-                .map_err(|err| RestError(format!("Failed to spawn blocking task - {err}")))?;
+        let result = tokio::task::spawn_blocking(move || {
+            rest.ledger.get_state_proofs_for_block(block_height, &commitments)
+        })
+        .await
+        .map_err(|err| RestError(format!("Failed to spawn blocking task - {err}")))?;
 
-        // Handle result and return JSON
         match result {
             Ok(proofs) => Ok(ErasedJson::pretty(proofs)),
             Err(err) => Err(RestError(format!("Unable to get state proofs - {err}"))),
         }
     }
+
 
     // GET /<network>/stateRoot/latest
     pub(crate) async fn get_state_root_latest(State(rest): State<Self>) -> ErasedJson {
