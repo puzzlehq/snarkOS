@@ -34,6 +34,12 @@ pub(crate) struct BlockRange {
     end: u32,
 }
 
+#[derive(Debug, Deserialize)]
+pub(crate) struct StateProofsQuery {
+    commitments: Vec<String>,
+}
+
+
 /// The query object for `get_mapping_value` and `get_mapping_values`.
 #[derive(Copy, Clone, Deserialize, Serialize)]
 pub(crate) struct Metadata {
@@ -267,11 +273,10 @@ impl<N: Network, C: ConsensusStorage<N>, R: Routing<N>> Rest<N, C, R> {
     pub(crate) async fn get_state_proofs_for_block(
         State(rest): State<Self>,
         Path(block_height): Path<u32>,
-        Query(params): Query<HashMap<String, Vec<String>>>,
+        Query(params): Query<StateProofsQuery>,
     ) -> Result<ErasedJson, RestError> {
         let commitments: Vec<Field<N>> = params
-            .get("commitments")
-            .ok_or_else(|| RestError("No commitments provided".to_string()))?
+            .commitments
             .iter()
             .map(|commitment| commitment.parse::<Field<N>>())
             .collect::<Result<Vec<_>, _>>()
