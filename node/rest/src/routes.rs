@@ -36,7 +36,7 @@ pub(crate) struct BlockRange {
 
 #[derive(Debug, Deserialize)]
 pub(crate) struct StateProofsQuery {
-    commitments: Vec<String>,
+    commitments: Option<Vec<String>>,
 }
 
 
@@ -273,14 +273,26 @@ impl<N: Network, C: ConsensusStorage<N>, R: Routing<N>> Rest<N, C, R> {
     pub(crate) async fn get_state_proofs_for_block(
         State(rest): State<Self>,
         Path(block_height): Path<u32>,
-        Query(params): Query<StateProofsQuery>,
+        Query(params): Query<HashMap<String, Vec<String>>>
+        // Query(params): Query<StateProofsQuery>,
     ) -> Result<ErasedJson, RestError> {
+        info!("block_height: {}", block_height);
+
+        // Log the query params raw
+        info!("params: {:?}", params);
+
+        // Log the commitments directly
+        // info!("commitments (raw): {:?}", params.commitments);
+
         let commitments: Vec<Field<N>> = params
-            .commitments
-            .iter()
-            .map(|commitment| commitment.parse::<Field<N>>())
-            .collect::<Result<Vec<_>, _>>()
-            .map_err(|_| RestError("Invalid commitment provided".to_string()))?;
+          .get("commitments")
+          .unwrap_or(&Vec::new())
+          .iter()
+          .map(|commitment| commitment.parse::<Field<N>>())
+          .collect::<Result<Vec<_>, _>>()?;
+
+
+        info!("parsed commitments: {:?}", commitments);
 
         let result = tokio::task::spawn_blocking(move || {
             rest.ledger.get_state_proofs_for_block(block_height, &commitments)
