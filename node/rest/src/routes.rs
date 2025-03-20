@@ -35,9 +35,26 @@ pub(crate) struct BlockRange {
 }
 
 #[derive(Debug, Deserialize)]
+#[serde(untagged)]
+pub enum OneOrMany {
+    One(String),
+    Many(Vec<String>),
+}
+
+impl From<OneOrMany> for Vec<String> {
+    fn from(value: OneOrMany) -> Self {
+        match value {
+            OneOrMany::One(s) => vec![s],
+            OneOrMany::Many(v) => v,
+        }
+    }
+}
+
+// Update the StateProofsQuery to use the helper type.
+#[derive(Debug, Deserialize)]
 pub(crate) struct StateProofsQuery {
     #[serde(default)]
-    commitments: Option<Vec<String>>,
+    commitments: Option<OneOrMany>,
 }
 
 /// The query object for `get_mapping_value` and `get_mapping_values`.
@@ -279,13 +296,12 @@ impl<N: Network, C: ConsensusStorage<N>, R: Routing<N>> Rest<N, C, R> {
         info!("Requesting state proofs for block: {}", block_height);
         info!("Query parameters: {:?}", params);
 
-        // Parse the commitments from strings to the expected Field type.
-        let commitments: Vec<Field<N>> = params
-            .commitments
-            .unwrap_or_default()
-            .iter()
-            .map(|s| s.parse::<Field<N>>())
-            .collect::<Result<Vec<_>, _>>()?;
+        // Convert the query parameter to a Vec<String>
+        let commitments_str: Vec<String> = params.commitments.map_or_else(Vec::new, |v| v.into());
+
+        // Parse the strings to the expected Field type.
+        let commitments: Vec<Field<N>> =
+            commitments_str.iter().map(|s| s.parse::<Field<N>>()).collect::<Result<Vec<_>, _>>()?;
 
         // Retrieve proofs in a blocking task.
         let proofs =
