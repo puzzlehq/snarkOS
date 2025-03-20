@@ -272,7 +272,7 @@ impl<N: Network, C: ConsensusStorage<N>, R: Routing<N>> Rest<N, C, R> {
     pub(crate) async fn get_state_proofs_for_block(
         State(rest): State<Self>,
         Path(block_height): Path<u32>,
-        Query(params): Query<HashMap<String, Vec<String>>>, // Query(params): Query<StateProofsQuery>,
+        Query(params): Query<StateProofsQuery>,
     ) -> Result<ErasedJson, RestError> {
         info!("block_height: {}", block_height);
 
@@ -283,11 +283,11 @@ impl<N: Network, C: ConsensusStorage<N>, R: Routing<N>> Rest<N, C, R> {
         // info!("commitments (raw): {:?}", params.commitments);
 
         let commitments: Vec<Field<N>> = params
-            .get("commitments")
-            .unwrap_or(&Vec::new())
-            .iter()
-            .map(|commitment| commitment.parse::<Field<N>>())
-            .collect::<Result<Vec<_>, _>>()?;
+          .commitments
+          .unwrap_or_default()
+          .iter()
+          .map(|commitment| commitment.parse::<Field<N>>())
+          .collect::<Result<Vec<_>, _>>()?;
 
         info!("parsed commitments: {:?}", commitments);
 
