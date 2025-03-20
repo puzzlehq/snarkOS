@@ -283,11 +283,11 @@ impl<N: Network, C: ConsensusStorage<N>, R: Routing<N>> Rest<N, C, R> {
         // info!("commitments (raw): {:?}", params.commitments);
 
         let commitments: Vec<Field<N>> = params
-          .commitments
-          .unwrap_or_default()
-          .iter()
-          .map(|commitment| commitment.parse::<Field<N>>())
-          .collect::<Result<Vec<_>, _>>()?;
+            .commitments
+            .unwrap_or_default()
+            .iter()
+            .map(|commitment| commitment.parse::<Field<N>>())
+            .collect::<Result<Vec<_>, _>>()?;
 
         info!("parsed commitments: {:?}", commitments);
 
