@@ -36,6 +36,7 @@ pub(crate) struct BlockRange {
 
 #[derive(Debug, Deserialize)]
 pub(crate) struct StateProofsQuery {
+    #[serde(default)]
     commitments: Option<Vec<String>>,
 }
 
@@ -274,32 +275,26 @@ impl<N: Network, C: ConsensusStorage<N>, R: Routing<N>> Rest<N, C, R> {
         Path(block_height): Path<u32>,
         Query(params): Query<StateProofsQuery>,
     ) -> Result<ErasedJson, RestError> {
-        info!("block_height: {}", block_height);
+        // Log for debugging.
+        info!("Requesting state proofs for block: {}", block_height);
+        info!("Query parameters: {:?}", params);
 
-        // Log the query params raw
-        info!("params: {:?}", params);
-
-        // Log the commitments directly
-        // info!("commitments (raw): {:?}", params.commitments);
-
+        // Parse the commitments from strings to the expected Field type.
         let commitments: Vec<Field<N>> = params
             .commitments
             .unwrap_or_default()
             .iter()
-            .map(|commitment| commitment.parse::<Field<N>>())
+            .map(|s| s.parse::<Field<N>>())
             .collect::<Result<Vec<_>, _>>()?;
 
-        info!("parsed commitments: {:?}", commitments);
-
-        let result =
+        // Retrieve proofs in a blocking task.
+        let proofs =
             tokio::task::spawn_blocking(move || rest.ledger.get_state_proofs_for_block(block_height, &commitments))
                 .await
-                .map_err(|err| RestError(format!("Failed to spawn blocking task - {err}")))?;
+                .map_err(|err| RestError(format!("Failed to spawn blocking task - {err}")))?
+                .map_err(|err| RestError(format!("Unable to get state proofs - {err}")))?;
 
-        match result {
-            Ok(proofs) => Ok(ErasedJson::pretty(proofs)),
-            Err(err) => Err(RestError(format!("Unable to get state proofs - {err}"))),
-        }
+        Ok(ErasedJson::pretty(proofs))
     }
 
     // GET /<network>/stateRoot/latest
