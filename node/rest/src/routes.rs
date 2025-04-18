@@ -53,9 +53,9 @@ impl From<OneOrMany> for Vec<String> {
 // Update the StateProofsQuery to use the helper type.
 #[derive(Debug, Deserialize)]
 pub(crate) struct StateProofsQuery {
-    #[serde(default)]
-    commitments: Option<OneOrMany>,
+    pub commitments: Vec<String>,
 }
+
 
 /// The query object for `get_mapping_value` and `get_mapping_values`.
 #[derive(Copy, Clone, Deserialize, Serialize)]
@@ -297,7 +297,7 @@ impl<N: Network, C: ConsensusStorage<N>, R: Routing<N>> Rest<N, C, R> {
         info!("Query parameters: {:?}", params);
 
         // Convert the query parameter to a Vec<String>
-        let commitments_str: Vec<String> = params.commitments.map_or_else(Vec::new, |v| v.into());
+        let commitments_str = params.commitments;
 
         // Parse the strings to the expected Field type.
         let commitments: Vec<Field<N>> =
