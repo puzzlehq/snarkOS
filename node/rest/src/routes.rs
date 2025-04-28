@@ -300,9 +300,12 @@ impl<N: Network, C: ConsensusStorage<N>, R: Routing<N>> Rest<N, C, R> {
         // Extract query string
         let query = req.uri().query().unwrap_or("");
 
-        // Use serde_qs to parse the query string
-        let params: StateProofsQuery =
-            serde_qs::from_str(query).map_err(|e| RestError(format!("Failed to parse query parameters: {}", e)))?;
+        // Create a non-strict config for serde_qs
+        let config = serde_qs::Config::new(5, false);
+
+        // Use serde_qs with non-strict mode to parse the query string
+        let params: StateProofsQuery = config.deserialize_str(query)
+            .map_err(|e| RestError(format!("Failed to parse query parameters: {}", e)))?;
 
         info!("Query parameters: {:?}", params);
 
