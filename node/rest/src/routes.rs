@@ -294,9 +294,6 @@ impl<N: Network, C: ConsensusStorage<N>, R: Routing<N>> Rest<N, C, R> {
         Path(block_height): Path<u32>,
         req: Request<Body>,
     ) -> Result<ErasedJson, RestError> {
-        // Log for debugging
-        info!("Requesting state proofs for block: {}", block_height);
-
         // Extract query string
         let query = req.uri().query().unwrap_or("");
 
@@ -306,8 +303,6 @@ impl<N: Network, C: ConsensusStorage<N>, R: Routing<N>> Rest<N, C, R> {
         // Use serde_qs with non-strict mode to parse the query string
         let params: StateProofsQuery =
             config.deserialize_str(query).map_err(|e| RestError(format!("Failed to parse query parameters: {}", e)))?;
-
-        info!("Query parameters: {:?}", params);
 
         // Convert the query parameter to a Vec<String>
         let commitments_str = params.commitments;
