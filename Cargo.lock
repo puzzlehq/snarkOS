@@ -3908,7 +3908,7 @@ dependencies = [
 [[package]]
 name = "snarkvm"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "anstyle",
  "anyhow",
@@ -3940,7 +3940,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-algorithms"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "aleo-std",
  "anyhow",
@@ -3972,7 +3972,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-algorithms-cuda"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "blst",
  "cc",
@@ -3983,7 +3983,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-circuit"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-circuit-account",
  "snarkvm-circuit-algorithms",
@@ -3997,7 +3997,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-circuit-account"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-circuit-algorithms",
  "snarkvm-circuit-network",
@@ -4008,7 +4008,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-circuit-algorithms"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-circuit-types",
  "snarkvm-console-algorithms",
@@ -4018,7 +4018,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-circuit-collections"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-circuit-algorithms",
  "snarkvm-circuit-types",
@@ -4028,7 +4028,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-circuit-environment"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "indexmap 2.8.0",
  "itertools 0.11.0",
@@ -4047,12 +4047,12 @@ dependencies = [
 [[package]]
 name = "snarkvm-circuit-environment-witness"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 
 [[package]]
 name = "snarkvm-circuit-network"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-circuit-algorithms",
  "snarkvm-circuit-collections",
@@ -4063,7 +4063,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-circuit-program"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "paste",
  "snarkvm-circuit-account",
@@ -4078,7 +4078,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-circuit-types"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-circuit-environment",
  "snarkvm-circuit-types-address",
@@ -4093,7 +4093,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-circuit-types-address"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-circuit-environment",
  "snarkvm-circuit-types-boolean",
@@ -4106,7 +4106,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-circuit-types-boolean"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-circuit-environment",
  "snarkvm-console-types-boolean",
@@ -4115,7 +4115,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-circuit-types-field"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-circuit-environment",
  "snarkvm-circuit-types-boolean",
@@ -4125,7 +4125,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-circuit-types-group"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-circuit-environment",
  "snarkvm-circuit-types-boolean",
@@ -4137,7 +4137,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-circuit-types-integers"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-circuit-environment",
  "snarkvm-circuit-types-boolean",
@@ -4149,7 +4149,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-circuit-types-scalar"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-circuit-environment",
  "snarkvm-circuit-types-boolean",
@@ -4160,7 +4160,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-circuit-types-string"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-circuit-environment",
  "snarkvm-circuit-types-boolean",
@@ -4172,7 +4172,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-console"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-console-account",
  "snarkvm-console-algorithms",
@@ -4185,7 +4185,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-console-account"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "bs58",
  "snarkvm-console-network",
@@ -4196,7 +4196,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-console-algorithms"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "blake2s_simd",
  "smallvec",
@@ -4209,7 +4209,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-console-collections"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "aleo-std",
  "rayon",
@@ -4220,7 +4220,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-console-network"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "anyhow",
  "indexmap 2.8.0",
@@ -4243,7 +4243,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-console-network-environment"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "anyhow",
  "bech32",
@@ -4261,7 +4261,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-console-program"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "enum-iterator",
  "enum_index",
@@ -4283,7 +4283,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-console-types"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-console-network-environment",
  "snarkvm-console-types-address",
@@ -4298,7 +4298,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-console-types-address"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-console-network-environment",
  "snarkvm-console-types-boolean",
@@ -4309,7 +4309,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-console-types-boolean"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-console-network-environment",
 ]
@@ -4317,7 +4317,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-console-types-field"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-console-network-environment",
  "snarkvm-console-types-boolean",
@@ -4327,7 +4327,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-console-types-group"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-console-network-environment",
  "snarkvm-console-types-boolean",
@@ -4338,7 +4338,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-console-types-integers"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-console-network-environment",
  "snarkvm-console-types-boolean",
@@ -4349,7 +4349,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-console-types-scalar"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-console-network-environment",
  "snarkvm-console-types-boolean",
@@ -4360,7 +4360,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-console-types-string"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-console-network-environment",
  "snarkvm-console-types-boolean",
@@ -4371,7 +4371,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-curves"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "rand",
  "rayon",
@@ -4385,7 +4385,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-fields"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "aleo-std",
  "anyhow",
@@ -4402,7 +4402,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-ledger"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "aleo-std",
  "anyhow",
@@ -4429,7 +4429,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-ledger-authority"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "anyhow",
  "rand",
@@ -4441,7 +4441,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-ledger-block"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "indexmap 2.8.0",
  "rayon",
@@ -4461,7 +4461,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-ledger-committee"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "anyhow",
  "indexmap 2.8.0",
@@ -4480,7 +4480,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-ledger-narwhal"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-ledger-narwhal-batch-certificate",
  "snarkvm-ledger-narwhal-batch-header",
@@ -4493,7 +4493,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-ledger-narwhal-batch-certificate"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "indexmap 2.8.0",
  "rayon",
@@ -4506,7 +4506,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-ledger-narwhal-batch-header"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "indexmap 2.8.0",
  "rayon",
@@ -4519,7 +4519,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-ledger-narwhal-data"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "bytes",
  "serde_json",
@@ -4530,7 +4530,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-ledger-narwhal-subdag"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "indexmap 2.8.0",
  "rayon",
@@ -4545,7 +4545,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-ledger-narwhal-transmission"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "bytes",
  "serde_json",
@@ -4558,7 +4558,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-ledger-narwhal-transmission-id"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "snarkvm-console",
  "snarkvm-ledger-puzzle",
@@ -4567,7 +4567,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-ledger-puzzle"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "aleo-std",
  "anyhow",
@@ -4588,7 +4588,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-ledger-puzzle-epoch"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "aleo-std",
  "anyhow",
@@ -4610,7 +4610,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-ledger-query"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "async-trait",
  "reqwest 0.11.27",
@@ -4623,7 +4623,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-ledger-store"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "aleo-std-storage",
  "anyhow",
@@ -4651,7 +4651,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-ledger-test-helpers"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "aleo-std",
  "once_cell",
@@ -4668,7 +4668,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-metrics"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "metrics",
  "metrics-exporter-prometheus",
@@ -4677,7 +4677,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-parameters"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "aleo-std",
  "anyhow",
@@ -4703,7 +4703,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-synthesizer"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "aleo-std",
  "anyhow",
@@ -4736,7 +4736,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-synthesizer-process"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "aleo-std",
  "colored",
@@ -4762,7 +4762,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-synthesizer-program"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "indexmap 2.8.0",
  "paste",
@@ -4777,7 +4777,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-synthesizer-snark"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "bincode",
  "once_cell",
@@ -4790,7 +4790,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-utilities"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "aleo-std",
  "anyhow",
@@ -4811,7 +4811,7 @@ dependencies = [
 [[package]]
 name = "snarkvm-utilities-derives"
 version = "1.5.0"
-source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=edee422#edee4223285553ab893c4e013400db4a4cc5e46d"
+source = "git+https://github.com/puzzleHQ/snarkVM.git?rev=ea2a03c#ea2a03ca5d4a804b8bbe3b81c9a7664c0b1d4aab"
 dependencies = [
  "proc-macro2",
  "quote 1.0.40",
