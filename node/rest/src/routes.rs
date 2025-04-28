@@ -24,6 +24,7 @@ use indexmap::IndexMap;
 use rayon::prelude::*;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
+use serde_qs;
 use std::collections::HashMap;
 /// The `get_blocks` query object.
 #[derive(Deserialize, Serialize)]
@@ -53,9 +54,9 @@ impl From<OneOrMany> for Vec<String> {
 // Update the StateProofsQuery to use the helper type.
 #[derive(Debug, Deserialize)]
 pub(crate) struct StateProofsQuery {
+    #[serde(default)]
     pub commitments: Vec<String>,
 }
-
 
 /// The query object for `get_mapping_value` and `get_mapping_values`.
 #[derive(Copy, Clone, Deserialize, Serialize)]
@@ -287,13 +288,22 @@ impl<N: Network, C: ConsensusStorage<N>, R: Routing<N>> Rest<N, C, R> {
         Ok(ErasedJson::pretty(rest.ledger.get_state_path_for_commitment(&commitment)?))
     }
 
+    // GET /<network>/statePath/{commitment}
     pub(crate) async fn get_state_proofs_for_block(
         State(rest): State<Self>,
         Path(block_height): Path<u32>,
-        Query(params): Query<StateProofsQuery>,
+        req: Request<Body>,
     ) -> Result<ErasedJson, RestError> {
-        // Log for debugging.
+        // Log for debugging
         info!("Requesting state proofs for block: {}", block_height);
+
+        // Extract query string
+        let query = req.uri().query().unwrap_or("");
+
+        // Use serde_qs to parse the query string
+        let params: StateProofsQuery =
+            serde_qs::from_str(query).map_err(|e| RestError(format!("Failed to parse query parameters: {}", e)))?;
+
         info!("Query parameters: {:?}", params);
 
         // Convert the query parameter to a Vec<String>
