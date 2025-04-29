@@ -25,7 +25,6 @@ use rayon::prelude::*;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 use serde_qs;
-use std::collections::HashMap;
 /// The `get_blocks` query object.
 #[derive(Deserialize, Serialize)]
 pub(crate) struct BlockRange {
@@ -35,23 +34,6 @@ pub(crate) struct BlockRange {
     end: u32,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(untagged)]
-pub enum OneOrMany {
-    One(String),
-    Many(Vec<String>),
-}
-
-impl From<OneOrMany> for Vec<String> {
-    fn from(value: OneOrMany) -> Self {
-        match value {
-            OneOrMany::One(s) => vec![s],
-            OneOrMany::Many(v) => v,
-        }
-    }
-}
-
-// Update the StateProofsQuery to use the helper type.
 #[derive(Debug, Deserialize)]
 pub(crate) struct StateProofsQuery {
     #[serde(default)]
