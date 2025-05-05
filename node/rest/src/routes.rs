@@ -24,7 +24,7 @@ use indexmap::IndexMap;
 use rayon::prelude::*;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
-
+use serde_qs;
 /// The `get_blocks` query object.
 #[derive(Deserialize, Serialize)]
 pub(crate) struct BlockRange {
@@ -32,6 +32,12 @@ pub(crate) struct BlockRange {
     start: u32,
     /// The ending block height (exclusive).
     end: u32,
+}
+
+#[derive(Debug, Deserialize)]
+pub(crate) struct StateProofsQuery {
+    #[serde(default)]
+    pub commitments: Vec<String>,
 }
 
 /// The query object for `get_mapping_value` and `get_mapping_values`.
@@ -262,6 +268,39 @@ impl<N: Network, C: ConsensusStorage<N>, R: Routing<N>> Rest<N, C, R> {
         Path(commitment): Path<Field<N>>,
     ) -> Result<ErasedJson, RestError> {
         Ok(ErasedJson::pretty(rest.ledger.get_state_path_for_commitment(&commitment)?))
+    }
+
+    // GET /<network>/statePath/{commitment}
+    pub(crate) async fn get_state_proofs_for_block(
+        State(rest): State<Self>,
+        Path(block_height): Path<u32>,
+        req: Request<Body>,
+    ) -> Result<ErasedJson, RestError> {
+        // Extract query string
+        let query = req.uri().query().unwrap_or("");
+
+        // Create a non-strict config for serde_qs
+        let config = serde_qs::Config::new(5, false);
+
+        // Use serde_qs with non-strict mode to parse the query string
+        let params: StateProofsQuery =
+            config.deserialize_str(query).map_err(|e| RestError(format!("Failed to parse query parameters: {}", e)))?;
+
+        // Convert the query parameter to a Vec<String>
+        let commitments_str = params.commitments;
+
+        // Parse the strings to the expected Field type.
+        let commitments: Vec<Field<N>> =
+            commitments_str.iter().map(|s| s.parse::<Field<N>>()).collect::<Result<Vec<_>, _>>()?;
+
+        // Retrieve proofs in a blocking task.
+        let proofs =
+            tokio::task::spawn_blocking(move || rest.ledger.get_state_proofs_for_block(block_height, &commitments))
+                .await
+                .map_err(|err| RestError(format!("Failed to spawn blocking task - {err}")))?
+                .map_err(|err| RestError(format!("Unable to get state proofs - {err}")))?;
+
+        Ok(ErasedJson::pretty(proofs))
     }
 
     // GET /<network>/stateRoot/latest
