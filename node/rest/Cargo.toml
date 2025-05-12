@@ -114,6 +114,3 @@ features = [ "cors", "trace" ]
 
 [dependencies.tracing]
 version = "0.1"
-
-[dependencies.serde_qs]
-version = "0.12"
