@@ -45,7 +45,7 @@ use axum::{
     response::Response,
     routing::{get, post},
 };
-use axum_extra::response::ErasedJson;
+use axum_extra::{extract::Query as ExtraQuery, response::ErasedJson};
 #[cfg(feature = "locktick")]
 use locktick::parking_lot::Mutex;
 #[cfg(not(feature = "locktick"))]

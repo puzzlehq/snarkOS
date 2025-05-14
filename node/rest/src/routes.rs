@@ -274,11 +274,14 @@ impl<N: Network, C: ConsensusStorage<N>, R: Routing<N>> Rest<N, C, R> {
     pub(crate) async fn get_state_proofs_for_block(
         State(rest): State<Self>,
         Path(block_height): Path<u32>,
-        Query(params): Query<StateProofsQuery>,
+        ExtraQuery(params): ExtraQuery<StateProofsQuery>,
     ) -> Result<ErasedJson, RestError> {
+        println!("params: {:?}", params);
         // Parse the strings to the expected Field type.
         let commitments: Vec<Field<N>> =
             params.commitments.iter().map(|s| s.parse::<Field<N>>()).collect::<Result<Vec<_>, _>>()?;
+
+        println!("commitments: {:?}", commitments);
 
         // Retrieve proofs in a blocking task.
         let proofs =
