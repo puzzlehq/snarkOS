@@ -276,12 +276,8 @@ impl<N: Network, C: ConsensusStorage<N>, R: Routing<N>> Rest<N, C, R> {
         Path(block_height): Path<u32>,
         ExtraQuery(params): ExtraQuery<StateProofsQuery>,
     ) -> Result<ErasedJson, RestError> {
-        println!("params: {:?}", params);
-        // Parse the strings to the expected Field type.
         let commitments: Vec<Field<N>> =
             params.commitments.iter().map(|s| s.parse::<Field<N>>()).collect::<Result<Vec<_>, _>>()?;
-
-        println!("commitments: {:?}", commitments);
 
         // Retrieve proofs in a blocking task.
         let proofs =
