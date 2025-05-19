@@ -80,15 +80,10 @@ version = "=3.6.0"
 
 [dependencies.snarkvm-synthesizer]
 #path = "../../../snarkVM/synthesizer"
-<<<<<<< HEAD
 git = "https://github.com/puzzleHQ/snarkVM.git"
 rev = "966fc1e"
 #version = "=1.5.0"
-=======
-git = "https://github.com/ProvableHQ/snarkVM.git"
-rev = "af55128f8"
-version = "=1.6.0"
->>>>>>> testnet
+
 default-features = false
 optional = true
 
