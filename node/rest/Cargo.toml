@@ -81,7 +81,7 @@ version = "=3.7.1"
 [dependencies.snarkvm-synthesizer]
 #path = "../../../snarkVM/synthesizer"
 git = "https://github.com/puzzlehq/snarkVM.git"
-rev = "80bd51c"
+rev = "f75fc45"
 version = "=3.7.1"
 default-features = false
 optional = true
