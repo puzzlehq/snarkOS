@@ -46,8 +46,9 @@ default-features = false
 [workspace.dependencies.snarkvm] # If this is updated, the rev in `node/rest/Cargo.toml` must be updated as well.
 #path = "../snarkVM"
 git = "https://github.com/puzzleHQ/snarkVM.git"
-rev = "8a19a53"
+rev = "94b26a0"
 #version = "=1.5.0"
+
 features = [ "circuit", "console", "rocks" ]
 
 [[bin]]
@@ -55,7 +56,7 @@ name = "snarkos"
 path = "snarkos/main.rs"
 
 [features]
-default = [ "snarkos-node-metrics", "snarkos-node/metrics", "snarkos-cli/metrics" ]
+default = [ "snarkos-cli/metrics", "snarkos-node-metrics", "snarkos-node/metrics", "snarkos-node-cdn/metrics" ]
 history = [ "snarkos-node/history" ]
 telemetry = [ "snarkos-node/telemetry" ]
 cuda = [

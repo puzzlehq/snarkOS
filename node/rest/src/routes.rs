@@ -1,4 +1,4 @@
-// Copyright 2024-2025 Aleo Network Foundation
+// Copyright (c) 2019-2025 Provable Inc.
 // This file is part of the snarkOS library.
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,7 @@ use indexmap::IndexMap;
 use rayon::prelude::*;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
-use serde_qs;
+
 /// The `get_blocks` query object.
 #[derive(Deserialize, Serialize)]
 pub(crate) struct BlockRange {
@@ -163,6 +163,14 @@ impl<N: Network, C: ConsensusStorage<N>, R: Routing<N>> Rest<N, C, R> {
         Ok(ErasedJson::pretty(rest.ledger.get_confirmed_transaction(tx_id)?))
     }
 
+    // GET /<network>/transaction/unconfirmed/{transactionID}
+    pub(crate) async fn get_unconfirmed_transaction(
+        State(rest): State<Self>,
+        Path(tx_id): Path<N::TransactionID>,
+    ) -> Result<ErasedJson, RestError> {
+        Ok(ErasedJson::pretty(rest.ledger.get_unconfirmed_transaction(&tx_id)?))
+    }
+
     // GET /<network>/memoryPool/transmissions
     pub(crate) async fn get_memory_pool_transmissions(State(rest): State<Self>) -> Result<ErasedJson, RestError> {
         match rest.consensus {
@@ -270,28 +278,14 @@ impl<N: Network, C: ConsensusStorage<N>, R: Routing<N>> Rest<N, C, R> {
         Ok(ErasedJson::pretty(rest.ledger.get_state_path_for_commitment(&commitment)?))
     }
 
-    // GET /<network>/statePath/{commitment}
+    // GET /<network>/stateProofsForBlock/{blockHeight}
     pub(crate) async fn get_state_proofs_for_block(
         State(rest): State<Self>,
         Path(block_height): Path<u32>,
-        req: Request<Body>,
+        ExtraQuery(params): ExtraQuery<StateProofsQuery>,
     ) -> Result<ErasedJson, RestError> {
-        // Extract query string
-        let query = req.uri().query().unwrap_or("");
-
-        // Create a non-strict config for serde_qs
-        let config = serde_qs::Config::new(5, false);
-
-        // Use serde_qs with non-strict mode to parse the query string
-        let params: StateProofsQuery =
-            config.deserialize_str(query).map_err(|e| RestError(format!("Failed to parse query parameters: {}", e)))?;
-
-        // Convert the query parameter to a Vec<String>
-        let commitments_str = params.commitments;
-
-        // Parse the strings to the expected Field type.
         let commitments: Vec<Field<N>> =
-            commitments_str.iter().map(|s| s.parse::<Field<N>>()).collect::<Result<Vec<_>, _>>()?;
+            params.commitments.iter().map(|s| s.parse::<Field<N>>()).collect::<Result<Vec<_>, _>>()?;
 
         // Retrieve proofs in a blocking task.
         let proofs =
